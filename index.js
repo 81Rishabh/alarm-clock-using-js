@@ -3,6 +3,7 @@ const dateTime = document.getElementById("dateTime-local");
 const Ring = document.getElementById("myAudio");
 const d = new Date();
 
+
 function setAlarm(e) {
   e.preventDefault();
 
@@ -15,11 +16,13 @@ function setAlarm(e) {
   let TimeToAlarm = alarmDate - currTime;
 
   if (TimeToAlarm >= 0) {
-    setTimeout(function () {
-      // play alarm ringtone
-      Ring.play();
-    }, TimeToAlarm);
+     setTimeout(function() {
+        Ring.play();
+     } , TimeToAlarm);
   }
+
+ 
+
 
   //  render set alarms lists to dom
   //  convert numeric time to local time string - 83948344 to 12:32 pm somthing like this
@@ -35,14 +38,32 @@ function setAlarm(e) {
     currMinute
   );
   renderAlarmListToDom(alarmTime, hour, minute);
+  const listItems = document.getElementById("alarm-list");
+  
+  let interval = setInterval(() => {
+      var getTimeInMiliSecond = Date.now();
+      var date = new Date(getTimeInMiliSecond);
+      var getAlaramMinutes = new Date(alarmDate).getMinutes();
+      var getMinutes = date.getMinutes();
+      
+      if(getAlaramMinutes == getMinutes) {
+          clearInterval(interval);
+          setTimeout(function() {
+            removeAlarmListItem(listItems);
+        } , TimeToAlarm / 2);
+    }
+ }, 1000);
 }
+
+function removeAlarmListItem(listItems) {
+    listItems.removeChild(listItems.firstElementChild);
+}
+
 
 // get Alarm Time in string like (alarm Rings in 1 hr 20 min like this)
 function getAlarmTime(prevMinute, prevHour, currHour, currMinute) {
-  console.log(prevHour, prevMinute);
-  console.log(currHour, currMinute);
-  let minute, hour;
 
+  let minute, hour;
   if (prevHour == currHour) {
     minute = Math.abs(prevMinute - currMinute);
     hour = 0;
@@ -61,8 +82,8 @@ function renderAlarmListToDom(time, hour, minute) {
   var getAmPm = time.split(" ")[1];
   var ul = document.getElementById("alarm-list");
   var li = document.createElement("li");
-
   let currentHour, currMinute;
+  
   if (minute == 60) {
     currMinute = "";
     currentHour = `${hour} hr`;
@@ -73,6 +94,8 @@ function renderAlarmListToDom(time, hour, minute) {
     currentHour = "";
     currMinute = `${minute} minute`;
   }
+  
+
 
   li.innerHTML = `
        <span id="time">${getTimeString}<span>
