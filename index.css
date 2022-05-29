@@ -1,0 +1,68 @@
+* {
+     box-sizing: border-box;
+}
+
+body {
+    margin : 0;
+    padding : 0;
+    background : rgb(15, 3, 56);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #fff;
+    margin-top: 3rem;
+}
+
+#alarm-container {
+   width : 400px;
+   margin : 5rem auto;
+   display : block;
+   min-height: 200px;
+   height : auto;
+   background : rgba(255, 255, 255, 0.1);
+   box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   border-radius: 5px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+form#alarm-form {
+  width : 85%;
+  display: block;
+  margin: 1rem auto;
+}
+
+#dateTime-local {
+    padding: .6rem;
+    border-radius: 5px;
+    background : rgba(255, 255, 255);
+}
+
+/* button styling */
+button{
+    padding: .6rem;
+    background :blueviolet;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* list item stying */
+li {
+    list-style: none;
+    background-color : rgb(15 3 56);
+    width : 85%;
+    padding : 1rem;
+    color: white;
+    margin : .6rem 0;
+}
+
+#time {
+    font-size: 1.5rem;
+}
+
+#am-pm {
+    font-size: 1rem;
+    opacity: .7;
+}
