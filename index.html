@@ -13,11 +13,20 @@
     <main>
         <h2>Alarm Clock</h2>
         <div id="alarm-container">
+            <div id="digital-clock">
+            </div>
             <form id="alarm-form">
-                <input type="datetime-local" id="dateTime-local" required>
-                <button type="submit">Set Alarm</button>
-                <button type="button" id="alarm-stop-button">Stop</button>
+                <div class="form-group">
+                    <input type="number" placeholder="HH" id="hour" value="" min="1" max="24" required>
+                    <input type="number" placeholder="MM" id="minute" value="" min="0" max="60" required>
+                    <input type="number" placeholder="SS" id="second" value="" min="0" max="60" >
+                </div>
+                <div>
+                    <button type="submit">Set Alarm</button>
+                    <button type="button" id="alarm-stop-button">Stop</button>
+                </div>
             </form>
+            <p style="color:#fff;margin-left:1.5rem;">Upcoming Alarms</p>
             <ul id="alarm-list">
             </ul>
         </div>
